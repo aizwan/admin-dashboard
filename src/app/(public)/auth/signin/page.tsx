@@ -1,15 +1,12 @@
+'use client';
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Metadata } from "next";
 import AuthLayout from "@/components/Layouts/AuthLayout";
-
-export const metadata: Metadata = {
-  title: "Signin | Sempoi",
-  description: "Signin",
-};
+import { useAuth } from '@/app/context/AuthContext';
 
 const SignIn: React.FC = () => {
+  const { signIn } = useAuth();
   return (
     <AuthLayout>
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -250,8 +247,8 @@ const SignIn: React.FC = () => {
                     className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
                   />
                 </div>
-
-                <button className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50">
+                {/* <a onClick={signIn}>Sign in with Google</a> */}
+                <a onClick={signIn} className="flex w-full items-center justify-center gap-3.5 rounded-lg border border-stroke bg-gray p-4 hover:bg-opacity-50 dark:border-strokedark dark:bg-meta-4 dark:hover:bg-opacity-50 cursor-pointer">
                   <span>
                     <svg
                       width="20"
@@ -286,7 +283,7 @@ const SignIn: React.FC = () => {
                     </svg>
                   </span>
                   Sign in with Google
-                </button>
+                </a>
 
                 <div className="mt-6 text-center">
                   <p>

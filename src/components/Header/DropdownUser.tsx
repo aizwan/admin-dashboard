@@ -2,9 +2,12 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ClickOutside from "@/components/ClickOutside";
+import { useAuth } from "@/app/context/AuthContext";
 
 const DropdownUser = () => {
+  const { user, logOut } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  console.log("user : ", user)
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
@@ -15,7 +18,7 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Thomas Anree
+            { user.displayName }
           </span>
           <span className="block text-xs">UX Designer</span>
         </span>
@@ -128,7 +131,7 @@ const DropdownUser = () => {
               </Link>
             </li>
           </ul>
-          <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+          <a onClick={logOut} className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base cursor-pointer">
             <svg
               className="fill-current"
               width="22"
@@ -147,7 +150,7 @@ const DropdownUser = () => {
               />
             </svg>
             Log Out
-          </button>
+          </a>
         </div>
       )}
       {/* <!-- Dropdown End --> */}

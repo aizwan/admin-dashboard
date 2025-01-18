@@ -1,13 +1,18 @@
+'use client';
+
 import ECommerce from "@/components/Dashboard/E-commerce";
-import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
-export const metadata: Metadata = {
-  title: "Admin Dashboard | Sempoi",
-  description: "Admin Dashboard",
-};
+import { useAuth } from "./context/AuthContext";
+import SignIn from "./(public)/auth/signin/page";
 
 export default function Home() {
+  const { user } = useAuth();
+
+  if (!user) {
+    return <SignIn />
+  }
+  
   return (
     <>
       <DefaultLayout>
